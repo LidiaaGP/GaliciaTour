@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_nombre_restaurante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre restaurante"
+        android:layout_marginBottom="12dp"
+        android:textSize="25dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tv_descripcion_restaurante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripcion restaurante"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="serif"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="262dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        >
+        <Button
+            android:id="@+id/btn_ver_mapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
+            android:layout_marginRight="5dp"
+            android:text="Boton" />
+
+        <ImageButton
+            android:id="@+id/btn_compartir"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_menu_share"
+            />
+        <ImageButton
+            android:id="@+id/btn_favoritos"
+            android:layout_width="59dp"
+            android:layout_height="54dp"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/corazon"
+            android:layout_gravity="right"
+            app:tint="@color/red"
+            android:layout_marginBottom="12dp"
+            />
+
+    </LinearLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="213dp" />
+
+</LinearLayout>

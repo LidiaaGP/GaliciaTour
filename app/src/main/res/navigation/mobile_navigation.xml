@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+            <!-- aqui determinamos que Fragmento es el inicial -->
+
+
+<!-- Declaración de fragments a visualizar en el menú deslizante -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.navigationdrawer.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/fragmento2"
+        android:name="com.example.navigationdrawer.ui.fragmento2.Fragmento2"
+        android:label="@string/menu_fragmento2"
+        tools:layout="@layout/fragment_fragmento2" />
+
+    <fragment
+        android:id="@+id/fragmento3"
+        android:name="com.example.navigationdrawer.ui.fragmento3.Fragmento3"
+        android:label="@string/menu_fragmento3"
+        tools:layout="@layout/fragment_fragmento3" />
+    <fragment
+        android:id="@+id/fragmento4"
+        android:name="com.example.navigationdrawer.ui.fragmento4.fragmento4"
+        android:label="@string/Rutas"
+        tools:layout="@layout/fragment_fragmento4" />
+    <fragment
+        android:id="@+id/fragmento5"
+        android:name="com.example.navigationdrawer.ui.fragmento5.Fragmento5"
+        android:label="@string/favoritos"
+        tools:layout="@layout/fragment_fragmento5" />
+</navigation>

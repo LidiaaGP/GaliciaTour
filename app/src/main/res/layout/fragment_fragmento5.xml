@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragmento5.Fragmento5"
+    android:orientation="vertical"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_lugares_favoritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:fontFamily="serif"
+        android:textSize="20dp"
+        android:text="Tus favoritos"
+        android:textColor="@color/red"
+        />
+
+    <ListView
+        android:id="@+id/listview_favoritos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GaliciaTour</string>
+    <string name="navigation_drawer_open">Open GaliciaTour</string>
+    <string name="navigation_drawer_close">Close GaliciaTour</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">GaliciaTour</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_fragmento2">Que ver</string>
+    <string name="menu_fragmento3">Restaurantes</string>
+    <string name="salir">Salir</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Rutas" />
+    <string name="favoritos">Favoritos</string>
+</resources>
