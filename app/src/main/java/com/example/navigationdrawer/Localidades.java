@@ -7,15 +7,18 @@ public class Localidades {
     private String nombre;
     private String descripcion;
     private Integer idLocalidad;
-    private Button btn_ver_mapa;
     private ImageButton btn_compartir;
+    private Float latitud_localidades;
+    private  Float lontigud_localidades;
 
-    public Localidades(String nombre, String descripcion, Integer idLocalidad, Button btn_ver_mapa, ImageButton btn_compartir) {
+
+    public Localidades(String nombre, String descripcion, Integer idLocalidad, ImageButton btn_compartir, Float latitud_localidades, Float lontigud_localidades) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.idLocalidad = idLocalidad;
-        this.btn_ver_mapa = btn_ver_mapa;
         this.btn_compartir = btn_compartir;
+        this.latitud_localidades = latitud_localidades;
+        this.lontigud_localidades = lontigud_localidades;
     }
 
     public ImageButton getBtn_compartir() {
@@ -30,5 +33,19 @@ public class Localidades {
         return descripcion;
     }
 
+    public Float getLatitud_localidades() {
+        return latitud_localidades;
+    }
 
+    public void setLatitud_localidades(Float latitud_localidades) {
+        this.latitud_localidades = latitud_localidades;
+    }
+
+    public Float getLontigud_localidades() {
+        return lontigud_localidades;
+    }
+
+    public void setLontigud_localidades(Float lontigud_localidades) {
+        this.lontigud_localidades = lontigud_localidades;
+    }
 }

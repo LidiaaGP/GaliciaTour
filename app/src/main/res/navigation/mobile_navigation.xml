@@ -25,11 +25,7 @@
         android:name="com.example.navigationdrawer.ui.fragmento3.Fragmento3"
         android:label="@string/menu_fragmento3"
         tools:layout="@layout/fragment_fragmento3" />
-    <fragment
-        android:id="@+id/fragmento4"
-        android:name="com.example.navigationdrawer.ui.fragmento4.fragmento4"
-        android:label="@string/Rutas"
-        tools:layout="@layout/fragment_fragmento4" />
+
     <fragment
         android:id="@+id/fragmento5"
         android:name="com.example.navigationdrawer.ui.fragmento5.Fragmento5"

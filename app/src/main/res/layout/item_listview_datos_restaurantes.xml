@@ -70,13 +70,6 @@
         android:orientation="horizontal"
         android:layout_gravity="right"
         >
-        <Button
-            android:id="@+id/btn_ver_mapa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:layout_marginRight="5dp"
-            android:text="Boton" />
 
         <ImageButton
             android:id="@+id/btn_compartir"

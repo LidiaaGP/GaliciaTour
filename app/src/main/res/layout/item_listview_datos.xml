@@ -31,8 +31,37 @@
         android:id="@+id/img_imagen"
         android:layout_width="wrap_content"
         android:layout_height="253dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:layout_marginBottom="12dp"
+        />
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView_localidades"
+        android:layout_width="match_parent"
+        android:layout_height="213dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_latitud_localidades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitud"
+            android:layout_marginRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_longitud_localidades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitud" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,13 +69,6 @@
         android:orientation="horizontal"
         android:layout_gravity="right"
         >
-        <Button
-            android:id="@+id/btn_ver_mapa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:layout_marginRight="5dp"
-            android:text="Boton" />
         <ImageButton
             android:id="@+id/btn_compartir"
             android:layout_width="wrap_content"

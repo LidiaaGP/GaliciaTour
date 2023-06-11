@@ -25,6 +25,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,13 +44,17 @@ public class ArrayAdapterLocalidades extends ArrayAdapter<Localidades> {
     List <Localidades> localidades;
     HashMap<String, Integer> imagenesMap;
     SharedPreferences preferencias;
+    private GoogleMap googleMap;
     static class Ref{
         TextView nombre;
         TextView descripcion;
-        Button btn_ver_mapa;
         ImageView img_imagen;
         ImageButton btn_compartir;
         ImageButton btn_favoritos;
+        TextView tv_latitud_localidades;
+        TextView tv_longitud_Localidades;
+        MapView mapView_localidades;
+
 
     }
 
@@ -113,18 +123,24 @@ public class ArrayAdapterLocalidades extends ArrayAdapter<Localidades> {
             layout=activity.getLayoutInflater().inflate(idlayout,null);
             TextView nombre=layout.findViewById(R.id.tv_nombre);
             TextView descripcion=layout.findViewById(R.id.tv_descripcion);
-            Button btn_ver_mapa=layout.findViewById(R.id.btn_ver_mapa);
             ImageView img_imagen=layout.findViewById(R.id.img_imagen);
             ImageButton btn_compartir=layout.findViewById(R.id.btn_compartir);
             ImageButton btn_favoritos=layout.findViewById(R.id.btn_favoritos);
+            TextView tv_latitud_localidades=layout.findViewById(R.id.tv_latitud_localidades);
+            TextView tv_longitud_localidades=layout.findViewById(R.id.tv_longitud_localidades);
+            MapView mapView_localidades = layout.findViewById(R.id.mapView_localidades);
             ref=new ArrayAdapterLocalidades.Ref();
-
+            mapView_localidades.onCreate(null);
+            mapView_localidades.onResume();
             ref.nombre=nombre;
             ref.descripcion=descripcion;
-            ref.btn_ver_mapa=btn_ver_mapa;
             ref.img_imagen=img_imagen;
             ref.btn_compartir=btn_compartir;
             ref.btn_favoritos=btn_favoritos;
+            ref.mapView_localidades = mapView_localidades;
+            ref.tv_latitud_localidades=tv_latitud_localidades;
+            ref.tv_longitud_Localidades=tv_longitud_localidades;
+
             layout.setTag(ref);
         }
         else{
@@ -134,19 +150,16 @@ public class ArrayAdapterLocalidades extends ArrayAdapter<Localidades> {
         Localidades localidad=localidades.get(position);
         ref.nombre.setText(localidad.getNombre());
         ref.descripcion.setText(localidad.getDescripcion());
-        ref.btn_ver_mapa.setText("Ver mapa");
-        ref.btn_ver_mapa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirMapa(localidad.getNombre());
-            }
-        });
         Integer imagenId = imagenesMap.get(localidad.getNombre());
         if (imagenId != null) {
             ref.img_imagen.setImageResource(imagenId);
         } else {
             ref.img_imagen.setImageResource(0);
         }
+        String latitudStr = String.valueOf(localidad.getLatitud_localidades());
+        ref.tv_latitud_localidades.setText(latitudStr);
+        String longitudStr = String.valueOf(localidad.getLontigud_localidades());
+        ref.tv_longitud_Localidades.setText(longitudStr);
         ref.btn_favoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,6 +187,23 @@ public class ArrayAdapterLocalidades extends ArrayAdapter<Localidades> {
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, mensaje);
                 activity.startActivity(Intent.createChooser(intent, "Compartir con"));
+
+            }
+        });
+        ref.mapView_localidades.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap map) {
+                googleMap = map; // Almacena la referencia de GoogleMap en una variable de instancia
+
+                // Obtiene la latitud y longitud
+                double latitud = localidad.getLatitud_localidades();
+                double longitud = localidad.getLontigud_localidades();
+
+                LatLng restauranteLocation = new LatLng(latitud, longitud);
+                googleMap.addMarker(new MarkerOptions().position(restauranteLocation));
+
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restauranteLocation, 30));
+
 
             }
         });

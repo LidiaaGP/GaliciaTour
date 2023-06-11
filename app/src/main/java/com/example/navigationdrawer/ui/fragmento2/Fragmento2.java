@@ -2,10 +2,13 @@ package com.example.navigationdrawer.ui.fragmento2;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.navigationdrawer.ArrayAdapterLocalidades;
@@ -25,12 +30,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fragmento2 extends Fragment{
+    private static final String TAG = "MainActivity";
+    private static final int REQUEST_LOCATION_PERMISSION = 1;
     ListView lisviewdatoslocalidades;
     ArrayAdapterLocalidades adapterLocalidades;
     int localidadId;
 
     SQLiteDatabase db;
     SharedPreferences preferencias;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -49,6 +57,21 @@ public class Fragmento2 extends Fragment{
         lisviewdatoslocalidades = root.findViewById(R.id.listViewDatosLocalidades);
         lisviewdatoslocalidades.setAdapter(adapterLocalidades);
 
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+        }
+
+        PackageManager packageManager = requireContext().getPackageManager();
+        String permission = Manifest.permission.ACCESS_FINE_LOCATION;  // Permiso de ubicación precisa
+        int result = packageManager.checkPermission(permission, requireContext().getPackageName());
+
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "El permiso de ubicación está otorgado");
+        } else {
+            Log.d(TAG, "El permiso de ubicación no está otorgado");
+        }
+
+
         return root;
     }
 
@@ -64,9 +87,10 @@ public class Fragmento2 extends Fragment{
                 String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
                 String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
                 Integer idLocalidad = cursor.getInt(cursor.getColumnIndexOrThrow("id_localidad"));
-                Button btn_ver_mapa = new Button(getContext());
+                Float latitud=cursor.getFloat(cursor.getColumnIndexOrThrow("latitud"));
+                Float longitud=cursor.getFloat(cursor.getColumnIndexOrThrow("longitud"));
                 ImageButton btn_compartir=new ImageButton(getContext());
-                localidades.add(new Localidades(nombre, descripcion, idLocalidad, btn_ver_mapa,btn_compartir));
+                localidades.add(new Localidades(nombre, descripcion, idLocalidad,btn_compartir,latitud,longitud));
             } while (cursor.moveToNext());
         }
 
