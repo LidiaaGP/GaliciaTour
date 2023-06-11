@@ -31,7 +31,38 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="262dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:layout_marginBottom="20dp"
+        />
+
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="213dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_latitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitud"
+            android:layout_marginRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_longitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitud" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -63,14 +94,8 @@
             app:srcCompat="@drawable/corazon"
             android:layout_gravity="right"
             app:tint="@color/red"
-            android:layout_marginBottom="12dp"
             />
 
     </LinearLayout>
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="213dp" />
 
 </LinearLayout>

@@ -38,6 +38,8 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
     HashMap<String, Integer> imagenesMap;
     SharedPreferences preferencias;
     private GoogleMap googleMap;
+    private TextView tv_latitud;
+    private TextView tv_longitud;
 
     static class Ref{
         TextView nombre;
@@ -46,6 +48,8 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
         ImageButton btn_favoritos;
         ImageButton btn_compartir;
         MapView mapView;
+        TextView tv_latitud;
+        TextView tv_longitud;
 
     }
 
@@ -117,6 +121,8 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
             ImageButton btn_favoritos=layout.findViewById(R.id.btn_favoritos);
             ImageButton btn_compartir=layout.findViewById(R.id.btn_compartir);
             MapView mapView = layout.findViewById(R.id.mapView);
+            TextView tv_latitud=layout.findViewById(R.id.tv_latitud);
+            TextView tv_longitud=layout.findViewById(R.id.tv_longitud);
 
             mapView.onCreate(null);
             mapView.onResume();
@@ -128,6 +134,8 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
             ref.btn_favoritos=btn_favoritos;
             ref.btn_compartir=btn_compartir;
             ref.mapView = mapView;
+            ref.tv_latitud=tv_latitud;
+            ref.tv_longitud=tv_longitud;
 
             layout.setTag(ref);
         }
@@ -138,6 +146,10 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
         Restaurantes dondeComer=dondecomer.get(position);
         ref.nombre.setText(dondeComer.getNombre());
         ref.descripcion.setText(dondeComer.getDescripcion());
+        String latitudStr = String.valueOf(dondeComer.getLatitud());
+        ref.tv_latitud.setText(latitudStr);
+        String longitudStr = String.valueOf(dondeComer.getLontigud());
+        ref.tv_longitud.setText(longitudStr);
         ref.btn_favoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,7 +195,9 @@ public class ArrayAdapterRestaurantes extends ArrayAdapter<Restaurantes> {
                 LatLng restauranteLocation = new LatLng(latitud, longitud);
                 googleMap.addMarker(new MarkerOptions().position(restauranteLocation));
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restauranteLocation, 12));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restauranteLocation, 30));
+
+
             }
         });
 
